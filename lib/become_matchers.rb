@@ -20,6 +20,8 @@ module BecomeMatchers
   end
   alias_method :become_not_truthy, :become_falsy
   alias_method :become_not_falsy, :become_truthy
+  alias_method :become_falsey, :become_falsy
+  alias_method :become_not_falsey, :become_truthy
 
   def become_eq(expected_value, **options)
     BecomeEq.new(expected_value, **options)

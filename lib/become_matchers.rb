@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'become_matchers/become_truthy'
-require 'become_matchers/become_falsey'
+require 'become_matchers/become_falsy'
 require 'become_matchers/become_eq'
 require 'become_matchers/become_not_eq'
 require 'become_matchers/become_eql'
@@ -15,11 +15,11 @@ module BecomeMatchers
   def become_truthy(**options)
     BecomeTruthy.new(**options)
   end
-  def become_falsey(**options)
-    BecomeFalsey.new(**options)
+  def become_falsy(**options)
+    BecomeFalsy.new(**options)
   end
-  alias_method :become_not_truthy, :become_falsey
-  alias_method :become_not_falsey, :become_truthy
+  alias_method :become_not_truthy, :become_falsy
+  alias_method :become_not_falsy, :become_truthy
 
   def become_eq(expected_value, **options)
     BecomeEq.new(expected_value, **options)

@@ -15,12 +15,16 @@ module BecomeMatchers
       Capybara.respond_to?(:default_retry_interval) ? Capybara.default_retry_interval : DEFAULT_RETRY_INTERVAL
     end
 
+    def defaults(options)
+      {wait: default_wait, retry_interval: default_retry_interval}.merge(options)
+    end
+
     def supports_block_expectations?
       true
     end
 
     def wait_until(options)
-      options = {wait: default_wait, retry_interval: default_retry_interval}.merge(**options)
+      options = defaults(options)
   
       loop_start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       while ! yield

@@ -3,13 +3,13 @@
 require 'become_matchers/unary'
 
 module BecomeMatchers
-  class BecomeFalsey < Unary
+  class BecomeFalsy < Unary
     def matches?(actual_block)
       wait_until(**@options) { ! (@actual_value = actual_block.call) }
     end
 
     def short_description
-      'falsey'
+      'falsy'
     end
 
     def short_negated_description

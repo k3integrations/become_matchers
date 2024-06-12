@@ -1,10 +1,10 @@
 # RSpec Become Matchers
 
-When writing rspec tests, there are some situations where you may find it useful to wait a short moment for a given block of code to return an expected value.  Capybara used to have a `wait_until` helper method that served this purpose.  But because "almost" all situations are better handled in other ways, and it was being mass abused by the community, they removed it.
+When writing RSpec tests, there are some situations where you may find it useful to wait a short moment for a given block of code to return an expected value.  Capybara used to have a `wait_until` helper method that served this purpose.  But because "almost" all situations are better handled in other ways, and it was being mass abused by the community, they removed it.
 
-"Almost"...  There are **rare** situations where you need that functionality back.  But this functionality is still better handled by an rspec matcher that waits instead of a helper method, because Capybara RSpec matchers already have succinct syntax that is easy to read and write, and very helpful error messages when tests fail.
+"Almost"...  There are **rare** situations where you need that functionality back.  But this functionality is still better handled by an RSpec matcher that waits instead of a helper method, because RSpec matchers already have succinct syntax that is easy to read and write, and very helpful error messages when tests fail.
 
-These rspec become matchers are meant to fill the gap.
+These RSpec become matchers are meant to fill the gap.
 
 ## Getting started
 
@@ -41,13 +41,13 @@ end
 ### Here is the current list of become matchers:
 
 * `become_truthy`
-* `become_falsey`
+* `become_falsy`
 * `become_eq expected_value`
 * `become_eql expected_value`
 * `become_present`
 * `become_blank`
 
-All of these support natural rspec matcher negation, and some of these are negative versions of others, and they all have `become_not_*` versions or aliases.  Use whichever one makes the most sense in your situation.
+All of these support natural RSpec matcher negation, and some of these are negative versions of others, and they all have `become_not_*` versions or aliases.  Use whichever one makes the most sense in your situation.
 
 All of these support these optional parameters:
 * `wait` which defaults to `Capybara.default_max_wait_time`
@@ -80,7 +80,7 @@ expect { first('input', wait: 0, minimum: 0)&.value }.to become_eq 'expected val
 
  then you normally need to have:
  * a `wait: 0` in it, so it doesn't wait for the element to show up!  The `become_eq` matcher already internally waits, loops, and retries, so your test block shouldn't do so also (that would defeat the purpose)...
- * a `minimum: 0` in there so it doesn't raise an error if the element isn't there yet.  This way `become_eq` can properly wait for it to show up instead (as well as testing for its value equality).
+ * In Capybara 3 and later you need a `minimum: 0` in there so it doesn't raise an error if the element isn't there yet.  This way `become_eq` can properly wait for it to show up instead (as well as testing for its value equality).
 
 **Note again: normally you should not need this either.**  Normally you should do this instead:
 
@@ -98,7 +98,9 @@ Waiting for something to happen in Ruby is so simple that most people don't seem
 
 * Don't use `Time.now` (or similar) to check elapsed time, if you can help it on your platform.  The issue is when NTP sets your clock back and forth, you end up waiting too long or too short.  Sometimes even too short and your test fails!  Instead, always use `Process.clock_gettime(Process::CLOCK_MONOTONIC)` when available. This is obviously longer to type, especially in a gist, but it's a small price to pay for general stability.
 
-* Use a capybara matcher instead of a helper, which was already discussed above.
+* Use an RSpec matcher instead of a helper, which was already [discussed above](#rspec-become-matchers).
+
+Note about falsy vs falsey: this is a new word that may not have settled on a "correct" spelling yet.  But "falsy" is more frequent, with about a [70/30 split](https://english.stackexchange.com/a/590848) in common usage.  You decide what's right.
 
 ## Other similar gems
 
@@ -110,8 +112,10 @@ Feel free to fork and submit a good pull request, or submit an issue if you find
 
 ## Compatibility
 
-At least Ruby 2 and RSpec 3.  The `become_present` and `become_blank` matchers naturally require `active_support`.
+* [Ruby](https://www.ruby-lang.org/) 2 or above
+* [RSpec](https://rspec.info/) 3 or above
+* [Active Support](https://guides.rubyonrails.org/active_support_core_extensions.html) - only for `become_present` and `become_blank` matchers.
 
 ## Versioning
 
-Semantic Versioning as defined at <https://semver.org>.
+[Semantic Versioning](https://semver.org)

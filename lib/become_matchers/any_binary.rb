@@ -5,7 +5,7 @@ require 'become_matchers/multiple_binary'
 module BecomeMatchers
   class AnyBinary < MultipleBinary
     def expected_description
-      @expected_values.length == 1 ? @expected_values.first.inspect : "any of #{@expected_values.map(&:to_s).join(', ')}"
+      @expected_values.length == 1 ? @expected_values.first.inspect : "any of #{@expected_values.map(&:inspect).join(', ')}"
     end
   end
 end

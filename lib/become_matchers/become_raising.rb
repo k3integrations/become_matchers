@@ -9,7 +9,11 @@ module BecomeMatchers
         begin
           actual_block.call
         rescue *@expected_values => e
-          @expected_values.include?(@actual_value = e.class)
+          @actual_value = e.class
+          true
+        rescue => e
+          @actual_value = e.class
+          raise
         else
           false
         end

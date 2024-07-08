@@ -44,6 +44,10 @@ end
 * `become_falsy`
 * `become_eq expected_value`
 * `become_eql expected_value`
+* `become_gt other_value`
+* `become_lt other_value`
+* `become_gte other_value`
+* `become_lte other_value`
 * `become_present`
 * `become_blank`
 
@@ -99,8 +103,6 @@ Waiting for something to happen in Ruby is so simple that most people don't seem
 * Don't use `Time.now` (or similar) to check elapsed time, if you can help it on your platform.  The issue is when NTP sets your clock back and forth, you end up waiting too long or too short.  Sometimes even too short and your test fails!  Instead, always use `Process.clock_gettime(Process::CLOCK_MONOTONIC)` when available. This is obviously longer to type, especially in a gist, but it's a small price to pay for general stability.
 
 * Use an RSpec matcher instead of a helper, which was already [discussed above](#rspec-become-matchers).
-
-Note about falsy vs falsey: this is a new word that may not have settled on a "correct" spelling yet.  But "falsy" is more frequent, with about a [70/30 split](https://english.stackexchange.com/a/590848) in common usage.  You decide what's right.
 
 ## Other similar gems
 

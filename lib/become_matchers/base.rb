@@ -3,7 +3,7 @@
 module BecomeMatchers
   class Base
     DEFAULT_WAIT = 2
-    DEFAULT_RETRY_INTERVAL = 0.1
+    DEFAULT_RETRY_INTERVAL = 0.01
   
     def default_wait
       # default_wait_time was deprecated/renamed to default_max_wait_time in Capybara 2.5, and removed in Capybara 3.0

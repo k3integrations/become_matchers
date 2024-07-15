@@ -16,11 +16,11 @@ require 'become_matchers/become_raising'
 require 'become_matchers/become_not_raising'
 
 module BecomeMatchers
-  def become_truthy(**options)
-    BecomeTruthy.new(**options)
+  def become_truthy(options = {})
+    BecomeTruthy.new(options)
   end
-  def become_falsy(**options)
-    BecomeFalsy.new(**options)
+  def become_falsy(options = {})
+    BecomeFalsy.new(options)
   end
   alias_method :become_not_truthy, :become_falsy
   alias_method :become_not_falsy, :become_truthy
@@ -29,31 +29,31 @@ module BecomeMatchers
   alias_method :become_falsey, :become_falsy
   alias_method :become_not_falsey, :become_truthy
 
-  def become_eq(expected_value, **options)
-    BecomeEq.new(expected_value, **options)
+  def become_eq(expected_value, options = {})
+    BecomeEq.new(expected_value, options)
   end
-  def become_not_eq(expected_value, **options)
-    BecomeNotEq.new(expected_value, **options)
-  end
-
-  def become_eql(expected_value, **options)
-    BecomeEql.new(expected_value, **options)
-  end
-  def become_not_eql(expected_value, **options)
-    BecomeNotEql.new(expected_value, **options)
+  def become_not_eq(expected_value, options = {})
+    BecomeNotEq.new(expected_value, options)
   end
 
-  def become_gt(expected_value, **options)
-    BecomeGt.new(expected_value, **options)
+  def become_eql(expected_value, options = {})
+    BecomeEql.new(expected_value, options)
   end
-  def become_lt(expected_value, **options)
-    BecomeLt.new(expected_value, **options)
+  def become_not_eql(expected_value, options = {})
+    BecomeNotEql.new(expected_value, options)
   end
-  def become_gte(expected_value, **options)
-    become_gte.new(expected_value, **options)
+
+  def become_gt(expected_value, options = {})
+    BecomeGt.new(expected_value, options)
   end
-  def become_lte(expected_value, **options)
-    BecomeLte.new(expected_value, **options)
+  def become_lt(expected_value, options = {})
+    BecomeLt.new(expected_value, options)
+  end
+  def become_gte(expected_value, options = {})
+    become_gte.new(expected_value, options)
+  end
+  def become_lte(expected_value, options = {})
+    BecomeLte.new(expected_value, options)
   end
   alias_method :become_not_gt, :become_lte
   alias_method :become_not_lt, :become_gte
@@ -64,20 +64,20 @@ module BecomeMatchers
   alias_method :become_not_gteq, :become_lt
   alias_method :become_not_lteq, :become_gt
 
-  def become_present(**options)
-    BecomePresent.new(**options)
+  def become_present(options = {})
+    BecomePresent.new(options)
   end
-  def become_blank(**options)
-    BecomeBlank.new(**options)
+  def become_blank(options = {})
+    BecomeBlank.new(options)
   end
   alias_method :become_not_present, :become_blank
   alias_method :become_not_blank, :become_present
 
-  def become_raising(expected_values, **options)
-    BecomeRaising.new(expected_values, **options)
+  def become_raising(expected_values, options = {})
+    BecomeRaising.new(expected_values, options)
   end
-  def become_not_raising(expected_values, **options)
-    BecomeNotRaising.new(expected_values, **options)
+  def become_not_raising(expected_values, options = {})
+    BecomeNotRaising.new(expected_values, options)
   end
 end
 

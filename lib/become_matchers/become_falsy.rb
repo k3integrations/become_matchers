@@ -5,7 +5,7 @@ require 'become_matchers/unary'
 module BecomeMatchers
   class BecomeFalsy < Unary
     def matches?(actual_block)
-      wait_until(**@options) { ! (@actual_value = actual_block.call) }
+      wait_until { ! (@actual_value = actual_block.call) }
     end
 
     def short_description

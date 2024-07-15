@@ -5,7 +5,7 @@ require 'become_matchers/any_binary'
 module BecomeMatchers
   class BecomeNotRaising < AnyBinary
     def matches?(actual_block)
-      wait_until(**@options) do
+      wait_until do
         begin
           actual_block.call
         rescue *@expected_values => e

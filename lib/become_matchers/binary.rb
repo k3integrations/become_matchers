@@ -4,9 +4,9 @@ require 'become_matchers/base'
 
 module BecomeMatchers
   class Binary < Base
-    def initialize(expected_value, **options)
+    def initialize(expected_value, options = {})
       @expected_value = expected_value
-      @options = options
+      super(options)
     end
 
     def expected_description

@@ -5,7 +5,7 @@ require 'become_matchers/binary'
 module BecomeMatchers
   class BecomeEql < Binary
     def matches?(actual_block)
-      wait_until(**@options) { (@actual_value = actual_block.call).eql? @expected_value }
+      wait_until { (@actual_value = actual_block.call).eql? @expected_value }
     end
 
     def operator

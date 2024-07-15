@@ -4,9 +4,9 @@ require 'become_matchers/binary'
 
 module BecomeMatchers
   class MultipleBinary < Binary
-    def initialize(*expected_values, **options)
+    def initialize(expected_values, options = {})
       @expected_values = Array(expected_values)
-      @options = options
+      super(options)
     end
   end
 end

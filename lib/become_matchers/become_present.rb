@@ -5,7 +5,7 @@ require 'become_matchers/unary'
 module BecomeMatchers
   class BecomePresent < Unary
     def matches?(actual_block)
-      wait_until(**@options) { (@actual_value = actual_block.call).present? }
+      wait_until { (@actual_value = actual_block.call).present? }
     end
 
     def short_description
